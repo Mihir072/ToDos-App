@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/color_page.dart';
+import 'package:todo_app/screens/login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -153,7 +154,7 @@ class _HomePageState extends State<HomePage> {
 
 AppBar _appbarWidget() {
   return AppBar(
-    backgroundColor: appbarColor, // Replace with appbarColor if needed
+    backgroundColor: Colors.blue, // Replace with your `appbarColor` variable
     leading: Builder(
       builder: (context) {
         return IconButton(
@@ -164,16 +165,29 @@ AppBar _appbarWidget() {
         );
       },
     ),
-    actions: const [
-      Padding(
-        padding: EdgeInsets.only(right: 10),
-        child: CircleAvatar(
-          backgroundColor: Colors.grey,
-          radius: 20,
-          backgroundImage: NetworkImage(
-              'https://cdn-icons-png.flaticon.com/128/236/236832.png'),
-        ),
-      )
+    actions: [
+      Builder(
+        builder: (context) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: CircleAvatar(
+                backgroundColor: Colors.grey,
+                radius: 20,
+                backgroundImage: NetworkImage(
+                  'https://cdn-icons-png.flaticon.com/128/236/236832.png',
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     ],
   );
 }
